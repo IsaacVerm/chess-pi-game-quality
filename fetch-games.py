@@ -1,8 +1,10 @@
 import requests
 
-url = 'https://lichess.org/api/user/isaacinator/current-game'
-headers = {'Accept': 'application/json'}
+class LatestGame:
+    url = 'https://lichess.org/api/user/isaacinator/current-game'
+    headers = {'Accept': 'application/json'}
 
-game = requests.get(url, headers=headers)
+    def fetch(self):
+        return requests.get(self.url, headers=self.headers).json()
 
-print(game.json())
+    
