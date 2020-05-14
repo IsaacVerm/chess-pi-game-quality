@@ -8,8 +8,11 @@ latest_game = LatestGame()
 latest_game.fetch()
 raw_pgn = latest_game.pgn
 
+
 # evaluate game
 evaluate_game = EvaluateGame(stockfish_path)
 evaluate_game.read(raw_pgn)
 evaluate_game.score()
-print(evaluate_game.scores)
+evaluate_game.determine_side()
+
+print(evaluate_game.side)

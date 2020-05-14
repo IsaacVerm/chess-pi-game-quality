@@ -8,6 +8,7 @@ class EvaluateGame:
         self.engine = chess.engine.SimpleEngine.popen_uci(stockfish_path)
         self.game = None
         self.scores = []
+        self.side = None
 
     def read(self, raw_pgn):
         parsed_pgn = io.StringIO(raw_pgn)
@@ -35,3 +36,20 @@ class EvaluateGame:
                 
         # stop the process
         self.engine.quit()
+
+    def determine_side(self):
+        headers = self.game.headers
+
+        if headers['White'] == 'Isaacinator':
+            self.side = 'white'
+        else:
+            self.side = 'black'
+
+    def calculate_move_diffs(self):
+        
+
+    def count_blunders(self):
+        return None
+
+    def count_great_moves(self):
+        return None
