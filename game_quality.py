@@ -11,4 +11,5 @@ raw_pgn = latest_game.pgn
 # evaluate game
 evaluate_game = EvaluateGame(stockfish_path)
 evaluate_game.read(raw_pgn)
-evaluate_game.evaluate()
+evaluate_game.score()
+print(evaluate_game.scores)

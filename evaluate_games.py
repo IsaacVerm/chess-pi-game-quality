@@ -7,12 +7,13 @@ class EvaluateGame:
     def __init__(self, stockfish_path):
         self.engine = chess.engine.SimpleEngine.popen_uci(stockfish_path)
         self.game = None
+        self.scores = []
 
     def read(self, raw_pgn):
         parsed_pgn = io.StringIO(raw_pgn)
         self.game = chess.pgn.read_game(parsed_pgn)
 
-    def evaluate(self):
+    def score(self):
         # set up the board in the starting position
         board = self.game.board()
 
@@ -20,10 +21,17 @@ class EvaluateGame:
         principal_line = self.game.mainline_moves()
 
         for move in principal_line:
-            while not board.is_game_over():
-                result = self.engine.play(board, chess.engine.Limit(time=0.1))
-                print(result)
-                board.push(result.move)
-        
+            # make a move
+            board.push(move)
+
+            # analyse the new position
+            analysis = self.engine.analyse(
+                board=board, 
+                limit=chess.engine.Limit(time=0.1))
+            score = analysis['score'].white()
+
+            # add score
+            self.scores.append(score)
+                
         # stop the process
         self.engine.quit()
