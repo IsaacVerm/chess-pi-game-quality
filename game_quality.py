@@ -9,6 +9,6 @@ latest_game.fetch()
 raw_pgn = latest_game.pgn
 
 # evaluate game
-evaluation = EvaluateGame(stockfish_path)
-evaluation.read(raw_pgn)
-print(evaluation.game)
+evaluate_game = EvaluateGame(stockfish_path)
+evaluate_game.read(raw_pgn)
+evaluate_game.evaluate()
