@@ -2,6 +2,7 @@ import chess
 import chess.engine
 import chess.pgn
 import io
+import operator
 
 class EvaluateGame:
     def __init__(self, stockfish_path):
@@ -29,7 +30,7 @@ class EvaluateGame:
             analysis = self.engine.analyse(
                 board=board, 
                 limit=chess.engine.Limit(time=0.1))
-            score = analysis['score'].white()
+            score = analysis['score'].white().score(mate_score=100000)
 
             # add score
             self.scores.append(score)
@@ -45,8 +46,9 @@ class EvaluateGame:
         else:
             self.side = 'black'
 
-    def calculate_move_diffs(self):
-        
+    def score_diffs(self):
+        self.score_diffs = list(map(operator.sub, self.scores[1:], self.scores[:-1]))
+        print(self.score_diffs)
 
     def count_blunders(self):
         return None

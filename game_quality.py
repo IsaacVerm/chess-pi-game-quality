@@ -14,5 +14,6 @@ evaluate_game = EvaluateGame(stockfish_path)
 evaluate_game.read(raw_pgn)
 evaluate_game.score()
 evaluate_game.determine_side()
+evaluate_game.score_diffs()
 
-print(evaluate_game.side)
+print(evaluate_game.score_diffs)
