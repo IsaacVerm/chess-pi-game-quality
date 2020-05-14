@@ -26,4 +26,6 @@ There's a dedicated library for more easily using the [Lichess API in Python](ht
 
 I'm in luck because the Lichess API already provides an endpoint which does exactly what I need. The [/api/user/{username}/current-game](https://lichess.org/api#operation/apiUserCurrentGame) downloads the ongoing game, OR (my situation) the last game played of a user. Even better, no authorization is required to fetch this game.
 
+`python-chess`, the library used to evaluate moves later on, [only accepts pgn](https://python-chess.readthedocs.io/en/latest/pgn.html). 
+
 ## Local evaluation game
