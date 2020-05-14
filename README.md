@@ -4,13 +4,15 @@ When pressing a button you get the status of blunders/excellent moves made durin
 
 ## Setup
 
-Setup environment:
+Setup Python environment:
 
 ```
 python3 -m venv venv;
 source venv/bin/activate;
 pip install -r requirements.txt
 ```
+
+To evaluate the games locally Stockfish is required. The engine binary can be downloaded [here](https://stockfishchess.org/download/). The binary you need is `stockfish-11-64` which can be found in the `/Mac` folder. Make sure `evaluate-games.py` points to this binary. 
 
 ## Steps
 
