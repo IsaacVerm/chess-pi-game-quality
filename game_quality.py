@@ -1,8 +1,7 @@
 from get_games import LatestGame
 from evaluate_games import EvaluateGame
 
-stockfish_path = "/Users/isaacverminck/Downloads/stockfish-11-mac/Mac/stockfish-11-64"
-# stockfish_path = "/usr/games/stockfish"
+stockfish_path = "/usr/games/stockfish"
 
 # get game
 latest_game = LatestGame()
