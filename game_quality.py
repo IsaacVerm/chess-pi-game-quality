@@ -12,11 +12,14 @@ raw_pgn = latest_game.pgn
 # evaluate game
 evaluate_game = EvaluateGame(stockfish_path)
 evaluate_game.read(raw_pgn)
-evaluate_game.score()
+evaluate_game.get_score()
 evaluate_game.determine_side()
-evaluate_game.score_diffs()
+evaluate_game.get_score_diffs()
+evaluate_game.get_score_diffs_side_played()
 
+print(evaluate_game.scores)
 print(evaluate_game.score_diffs)
+print(evaluate_game.score_diffs_side_played)
 
 # stop engine
 evaluate_game.stop_engine()

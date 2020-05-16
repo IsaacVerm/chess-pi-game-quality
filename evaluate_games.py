@@ -10,12 +10,14 @@ class EvaluateGame:
         self.game = None
         self.scores = []
         self.side = None
+        self.score_diffs = None
+        self.score_diffs_side_played = None
 
     def read(self, raw_pgn):
         parsed_pgn = io.StringIO(raw_pgn)
         self.game = chess.pgn.read_game(parsed_pgn)
 
-    def score(self):
+    def get_score(self):
         def setup_board():
             return self.game.board()
 
@@ -57,8 +59,23 @@ class EvaluateGame:
         else:
             self.side = 'black'
 
-    def score_diffs(self):
+    def get_score_diffs(self):
         self.score_diffs = list(map(operator.sub, self.scores[1:], self.scores[:-1]))
+
+    def get_score_diffs_side_played(self):
+        # if you played white even score diffs are moves made by white
+        # if you played black you aim for the odd score diffs
+        # https://stackoverflow.com/a/12433705
+        # slicing syntax is start:stop:end
+        # I didn't specify the end so it goes on till the end of the list
+        if self.side == 'white':
+            start = 1
+        else:
+            start = 0
+
+        step = 2
+
+        self.score_diffs_side_played = self.score_diffs[start::step]
 
     def count_blunders(self):
         return None
