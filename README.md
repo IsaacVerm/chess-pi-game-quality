@@ -12,7 +12,22 @@ source venv/bin/activate;
 pip install -r requirements.txt
 ```
 
-To evaluate the games locally Stockfish is required. The engine binary can be downloaded [here](https://stockfishchess.org/download/). The binary you need is `stockfish-11-64` which can be found in the `/Mac` folder. Make sure `evaluate-games.py` points to this binary. 
+To evaluate the games locally Stockfish is required. Installing Stockfish is different depending on your processor. In any case you have to make sure the `stockfish_path` variable at the top of `game_quality.py` points to this binary. 
+
+### Install Stockfish on Mac
+
+The engine binary can be downloaded [here](https://stockfishchess.org/download/). The binary you need is `stockfish-11-64` which can be found in the `/Mac` folder. 
+
+### Install Stockfish on Raspberry
+
+Install Stockfish on the Raspberry itself by running:
+
+```
+sudo apt-get update;
+sudo apt-get install;
+```
+
+Stockfish is installed at `/usr/games/stockfish`. You can [verify this yourself](https://askubuntu.com/questions/129022/determine-destination-location-of-apt-get-install-package).
 
 ## Steps
 
@@ -33,3 +48,6 @@ I'm in luck because the Lichess API already provides an endpoint which does exac
 Evaluation is done using Stockfish. Based on the score in [centipawns](https://lichess.org/faq#acpl) Lichess determines if a move is an inaccuracy, mistake or blunder. Note: the best move loses 0 centipawns, it's not possible to gain centipawns by making a good move.
 
 Based on the score I determine if a move is a blunder or a great move. There are some [posts](https://lichess.org/forum/general-chess-discussion/what-exactly-is-a-innac--mistake--blunder) about the exact evaluations. I consider it a great move if I lose less than 10 centipawns and a blunder when losing more than 200 centipawns.
+
+## Iot
+

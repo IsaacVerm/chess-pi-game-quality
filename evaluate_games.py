@@ -35,7 +35,12 @@ class EvaluateGame:
             return analysis
 
         def parse_score(analysis):
-            score = analysis['score'].white().score(mate_score=100000)
+            if self.side == 'white':
+                score = analysis['score'].white().score(
+                    mate_score=100000)
+            elif self.side == 'black':
+                score = analysis['score'].black().score(
+                    mate_score=100000)
 
             return score
 
