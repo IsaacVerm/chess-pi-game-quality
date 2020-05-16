@@ -97,5 +97,8 @@ class EvaluateGame:
                 return EvaluateGame.blunder_threshold
             elif type_of_move == 'great_move':
                 return EvaluateGame.great_move_threshold
+                
+        moves = [diff for diff in self.score_diffs_side_played if get_operator(
+            type_of_move)(diff, get_threshold(type_of_move))]
 
-        return len([diff for diff in self.score_diffs_side_played if get_operator(type_of_move)(diff, get_threshold(type_of_move))])
+        return len(moves)
