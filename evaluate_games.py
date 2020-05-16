@@ -16,26 +16,37 @@ class EvaluateGame:
         self.game = chess.pgn.read_game(parsed_pgn)
 
     def score(self):
-        # set up the board in the starting position
-        board = self.game.board()
+        def setup_board():
+            return self.game.board()
 
-        # go over each move and evaluate the position
-        principal_line = self.game.mainline_moves()
+        def get_principal_line():
+            return self.game.mainline_moves()
 
-        for move in principal_line:
-            # make a move
-            board.push(move)
-
-            # analyse the new position
+        def analyse_position():
             analysis = self.engine.analyse(
-                board=board, 
+                board=board,
                 limit=chess.engine.Limit(time=0.1))
+
+            return analysis
+
+        def parse_score(analysis):
             score = analysis['score'].white().score(mate_score=100000)
 
-            # add score
+            return score
+
+        def append_score(score):
             self.scores.append(score)
-                
-        # stop the process
+
+        board = setup_board()
+
+        for move in get_principal_line():
+            board.push(move)
+            analysis = analyse_position()
+            score = parse_score(analysis)
+            append_score(score)
+        
+
+    def stop_engine(self):
         self.engine.quit()
 
     def determine_side(self):
@@ -48,7 +59,6 @@ class EvaluateGame:
 
     def score_diffs(self):
         self.score_diffs = list(map(operator.sub, self.scores[1:], self.scores[:-1]))
-        print(self.score_diffs)
 
     def count_blunders(self):
         return None

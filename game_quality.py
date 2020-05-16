@@ -17,3 +17,6 @@ evaluate_game.determine_side()
 evaluate_game.score_diffs()
 
 print(evaluate_game.score_diffs)
+
+# stop engine
+evaluate_game.stop_engine()
