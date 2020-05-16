@@ -17,9 +17,12 @@ evaluate_game.determine_side()
 evaluate_game.get_score_diffs()
 evaluate_game.get_score_diffs_side_played()
 
-print(evaluate_game.scores)
-print(evaluate_game.score_diffs)
+# count moves 
+blunder_count = evaluate_game.count_moves('blunder')
+great_move_count = evaluate_game.count_moves('great_move')
+
 print(evaluate_game.score_diffs_side_played)
+print(great_move_count)
 
 # stop engine
 evaluate_game.stop_engine()

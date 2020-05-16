@@ -32,4 +32,4 @@ I'm in luck because the Lichess API already provides an endpoint which does exac
 
 Evaluation is done using Stockfish. Based on the score in [centipawns](https://lichess.org/faq#acpl) Lichess determines if a move is an inaccuracy, mistake or blunder. Note: the best move loses 0 centipawns, it's not possible to gain centipawns by making a good move.
 
-Based on the score I determine if a move is a blunder or a great move. There are some [posts](https://lichess.org/forum/general-chess-discussion/what-exactly-is-a-innac--mistake--blunder) about the exact evaluations. I consider it a great move if I lose less than 10 centipawns and a blunder when losing more than 300 centipawns.
+Based on the score I determine if a move is a blunder or a great move. There are some [posts](https://lichess.org/forum/general-chess-discussion/what-exactly-is-a-innac--mistake--blunder) about the exact evaluations. I consider it a great move if I lose less than 10 centipawns and a blunder when losing more than 200 centipawns.

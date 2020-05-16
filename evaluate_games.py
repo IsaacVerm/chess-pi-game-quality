@@ -5,6 +5,9 @@ import io
 import operator
 
 class EvaluateGame:
+    great_move_threshold = -10
+    blunder_threshold = -200
+
     def __init__(self, stockfish_path):
         self.engine = chess.engine.SimpleEngine.popen_uci(stockfish_path)
         self.game = None
@@ -77,8 +80,17 @@ class EvaluateGame:
 
         self.score_diffs_side_played = self.score_diffs[start::step]
 
-    def count_blunders(self):
-        return None
+    def count_moves(self, type_of_move):
+        def get_operator(type_of_move):
+            if type_of_move == 'blunder':
+                return operator.lt
+            elif type_of_move == 'great_move':
+                return operator.gt
 
-    def count_great_moves(self):
-        return None
+        def get_threshold(type_of_move):
+            if type_of_move == 'blunder':
+                return EvaluateGame.blunder_threshold
+            elif type_of_move == 'great_move':
+                return EvaluateGame.great_move_threshold
+
+        return len([diff for diff in self.score_diffs_side_played if get_operator(type_of_move)(diff, get_threshold(type_of_move))])
