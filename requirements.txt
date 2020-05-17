@@ -1,6 +1,8 @@
 autopep8==1.5.2
 certifi==2020.4.5.1
 chardet==3.0.4
+colorzero==1.1
+gpiozero==1.5.1
 idna==2.9
 pycodestyle==2.6.0
 python-chess==0.31.1
