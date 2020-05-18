@@ -12,6 +12,8 @@ source venv/bin/activate;
 pip install -r requirements.txt
 ```
 
+In addition to installing what's in `requirements.txt`, you also have to install `rpi.gpio` with `pip install rpi.gpio`. You don't need this when running scripts on Mac so that's why it hasn't been included in the `requirements.txt` file. The `rpi.gpio` library is a [bridge](https://gpiozero.readthedocs.io/en/stable/faq.html#why-do-i-get-pinfactoryfallback-warnings-when-i-import-gpiozero) between the physical board and `gpiozero`.
+
 To evaluate the games locally Stockfish is required. Installing Stockfish is different depending on your processor. In any case you have to make sure the `stockfish_path` variable at the top of `game_quality.py` points to this binary. 
 
 ### Install Stockfish on Mac
